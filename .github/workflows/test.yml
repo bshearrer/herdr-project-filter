@@ -1,0 +1,24 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # The manifest declares platforms = ["linux", "macos"]; test both.
+        os: [ubuntu-latest, macos-latest]
+        # package.json declares engines.node >= 20.
+        node: ["20", "22"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+      # No install step: this plugin has zero dependencies by design.
+      - run: npm test
