@@ -1,0 +1,57 @@
+id = "project-filter"
+name = "Project Filter"
+version = "0.1.0"
+min_herdr_version = "0.8.2"
+description = "Scope the Agents sidebar to one git repository at a time."
+platforms = ["linux", "macos"]
+
+[[startup]]
+command = ["node", "index.js", "startup"]
+
+[[actions]]
+id = "cycle"
+title = "Cycle project filter"
+contexts = ["workspace"]
+command = ["node", "index.js", "cycle"]
+
+[[actions]]
+id = "clear"
+title = "Clear project filter"
+contexts = ["workspace"]
+command = ["node", "index.js", "clear"]
+
+[[actions]]
+id = "pick"
+title = "Pick project filter"
+contexts = ["workspace"]
+command = ["node", "index.js", "pick"]
+
+[[panes]]
+id = "picker"
+title = "Project filter"
+placement = "popup"
+# Fixed cell counts, not a percentage: a percentage of a narrow terminal was
+# exactly how rows ended up wrapping in the field. picker.js clamps every
+# line to the pane's actual width regardless, but a reasonable fixed size
+# keeps the common case from needing that clamp at all. picker.js derives
+# its own non-TTY fallback rows/columns from this pane's height/width (see
+# lib/manifest.js), so keep the two in sync when resizing either one.
+width = 46
+height = 10
+command = ["node", "picker.js"]
+
+[[events]]
+on = "workspace.created"
+command = ["node", "index.js", "refresh"]
+
+[[events]]
+on = "workspace.closed"
+command = ["node", "index.js", "refresh"]
+
+[[events]]
+on = "worktree.opened"
+command = ["node", "index.js", "refresh"]
+
+[[events]]
+on = "worktree.removed"
+command = ["node", "index.js", "refresh"]
