@@ -1,0 +1,13 @@
+{
+  "name": "herdr-project-filter",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}
