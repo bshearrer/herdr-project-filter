@@ -19,10 +19,11 @@ At four or five agents the Agents panel is perfect. At twelve it's a flat list s
 unrelated codebases, and an agent blocked on the project you're *not* in is noise. This gives
 you the four-agent panel back, on demand, without closing anything.
 
-<img src="assets/demo.gif" alt="The Agents panel cycling from every agent, to one project's agents, to the next project's, and back" width="440">
+<img src="assets/demo.gif" alt="The herdr sidebar beside the project picker: choosing a project in the popup filters the Agents panel to that project's agents, live" width="900">
 
-*One key cycles the panel: everything → `api-server` → `web-client` → `untracked` → everything.
-The header label and the panel divider turn accent-colored while a scope is active.*
+*Pick a project and the Agents panel filters to it immediately — seven agents down to three. The
+Spaces tree above shows why those three belong together: `api-104` and `api-118` are worktrees of
+`api-server`. The header label and the panel divider turn accent-colored while a scope is active.*
 
 ## Requires
 
@@ -103,11 +104,6 @@ record fall into a catch-all group named `untracked`.
 
 Detection is entirely automatic. There is nothing to configure and nothing to keep in sync: open
 a new worktree and it joins its project's group on the next event.
-
-<img src="assets/grouping.gif" alt="The full sidebar: two repositories with their worktrees in the Spaces tree above, and the Agents panel filtering to one project at a time below" width="300">
-
-*Above the fold, the Spaces tree shows why: `api-104` and `api-118` are worktrees of `api-server`,
-so all three are one group. `notes` has no repository, so it lands in `untracked`.*
 
 ## Behavior
 
