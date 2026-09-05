@@ -39,13 +39,13 @@ Then add the keys — herdr does not bind plugin actions automatically:
 [[keys.command]]
 key = "prefix+a"
 type = "plugin_action"
-command = "project-filter.cycle"
+command = "bshearrer.project-filter.cycle"
 description = "cycle project filter"
 
 [[keys.command]]
 key = "prefix+shift+a"
 type = "plugin_action"
-command = "project-filter.pick"
+command = "bshearrer.project-filter.pick"
 description = "pick project filter"
 ```
 
@@ -55,14 +55,14 @@ Both chords are unbound in herdr's default keymap, which is why they were chosen
 **To update**, reinstall. Your keybindings live in your own `config.toml` and are untouched:
 
 ```bash
-herdr plugin uninstall project-filter && herdr plugin install bshearrer/herdr-project-filter
+herdr plugin uninstall bshearrer.project-filter && herdr plugin install bshearrer/herdr-project-filter
 ```
 
 **To remove it**, use whichever matches how you added it, then delete the two key blocks:
 
 ```bash
-herdr plugin uninstall project-filter   # installed from GitHub
-herdr plugin unlink project-filter      # linked locally
+herdr plugin uninstall bshearrer.project-filter   # installed from GitHub
+herdr plugin unlink bshearrer.project-filter      # linked locally
 ```
 
 Clearing the view first isn't necessary — herdr drops a plugin's view when the plugin is
@@ -78,9 +78,9 @@ herdr plugin link <path>
 
 | Key | Action | Does |
 | --- | --- | --- |
-| `prefix+a` | `project-filter.cycle` | Step: unfiltered → each project → `untracked` → unfiltered |
-| `prefix+shift+a` | `project-filter.pick` | Open a picker listing every project with live agent counts |
-| — | `project-filter.clear` | Return to unfiltered directly. Bound to nothing by default |
+| `prefix+a` | `bshearrer.project-filter.cycle` | Step: unfiltered → each project → `untracked` → unfiltered |
+| `prefix+shift+a` | `bshearrer.project-filter.pick` | Open a picker listing every project with live agent counts |
+| — | `bshearrer.project-filter.clear` | Return to unfiltered directly. Bound to nothing by default |
 
 The picker is a popup — arrows or `j`/`k` to move, Enter to apply, Escape to cancel. It shows
 how many agents each project has and how many are waiting on you, so you can decide whether a
@@ -128,7 +128,7 @@ Worth knowing before you install anything from an unreviewed index:
 - **It never modifies your workspaces, panes, or repositories.** It makes exactly four herdr calls:
   two reads (`workspace.list`, `agent.list`) and one display projection
   (`agent.view.set` / `agent.view.clear`). It has no write access to anything else.
-- **It launches one subprocess: the `herdr` CLI itself.** `project-filter.pick` shells out to
+- **It launches one subprocess: the `herdr` CLI itself.** `bshearrer.project-filter.pick` shells out to
   `herdr plugin pane open` to open the picker popup, resolved from `HERDR_BIN_PATH` (falling back
   to `herdr` on `$PATH`). That is the only process it ever spawns.
 - **It writes one small state file** — a few bytes of cycle position, in the state directory herdr
@@ -156,13 +156,13 @@ Worth knowing before you install anything from an unreviewed index:
 herdr pipes plugin output rather than displaying it, so this is the only place errors surface:
 
 ```bash
-herdr plugin log list --plugin project-filter
+herdr plugin log list --plugin bshearrer.project-filter
 ```
 
 If a keypress does nothing, check the actions registered:
 
 ```bash
-herdr plugin action list --plugin project-filter   # expect cycle, clear, pick
+herdr plugin action list --plugin bshearrer.project-filter   # expect cycle, clear, pick
 ```
 
 If `prefix+a` is already bound in your `config.toml`, the later definition wins — pick another

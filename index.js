@@ -7,8 +7,14 @@ import { buildViewRequest } from "./lib/view.js";
 import { readScope, writeScope, stateDir } from "./lib/state.js";
 import { call } from "./lib/rpc.js";
 
-export const PLUGIN_ID = "project-filter";
+// Namespaced, because herdr's plugin ids are a single global space shared by
+// every installed plugin and a bare "project-filter" is easy to collide with.
+export const PLUGIN_ID = "bshearrer.project-filter";
 export const SOURCE = `plugin:${PLUGIN_ID}`;
+
+// The log prefix is the plugin's name, not its address: it appears on every
+// line of `herdr plugin logs` and the namespace would be noise there.
+const LOG_PREFIX = "project-filter";
 
 /**
  * herdr pipes plugin stderr into `herdr plugin logs`, which is the only
@@ -16,7 +22,7 @@ export const SOURCE = `plugin:${PLUGIN_ID}`;
  * an Error (or an Error subclass with no message) must not print "undefined".
  */
 export function formatError(err) {
-  return `[${PLUGIN_ID}] ${String(err?.message ?? err)}`;
+  return `[${LOG_PREFIX}] ${String(err?.message ?? err)}`;
 }
 
 /** @returns {Promise<import("./lib/groups.js").Group[]>} */

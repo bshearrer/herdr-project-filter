@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readPaneConfig } from "../lib/manifest.js";
 
 const TOML = `
-id = "project-filter"
+id = "bshearrer.project-filter"
 
 [[actions]]
 id = "cycle"
