@@ -91,13 +91,7 @@ The picker is a popup — arrows or `j`/`k` to move, Enter to apply, Escape to c
 how many agents each project has and how many are waiting on you, so you can decide whether a
 project is worth switching into before you switch into it.
 
-```
-   all         6 agents ● 2 waiting
- ✓ api-server  2 agents ● 1 waiting
-›  web-client  3 agents ● 1 waiting
-   untracked   1 agent
-  ↑↓/jk move · enter select · esc cancel
-```
+<img src="assets/picker.gif" alt="The project picker popup, listing every project with its agent count, with the selection moving between rows" width="480">
 
 `✓` marks the scope currently applied; `›` is your cursor.
 
