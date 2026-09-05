@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildViewRequest } from "../lib/view.js";
 
-const SOURCE = "plugin:project-filter";
+const SOURCE = "plugin:bshearrer.project-filter";
 const groups = [
   { key: "/y/.git", name: "api-server", kind: "repo", workspaceIds: ["wE", "wAW"] },
   { key: "untracked", name: "untracked", kind: "untracked", workspaceIds: ["wAY"] },

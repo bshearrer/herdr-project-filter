@@ -53,7 +53,7 @@ test("cycle advances from unfiltered to the first repo group", async () => {
     assert.ok(set, "expected an agent.view.set request");
     assert.equal(set.params.label, "api-server");
     assert.deepEqual(set.params.filter.values, ["wE"]);
-    assert.equal(set.params.source, "plugin:project-filter");
+    assert.equal(set.params.source, "plugin:bshearrer.project-filter");
   } finally {
     server.close();
   }
@@ -80,7 +80,7 @@ test("a third cycle returns to unfiltered and clears", async () => {
     await run("cycle");
     await run("cycle");
     assert.equal(seen.at(-1).method, "agent.view.clear");
-    assert.equal(seen.at(-1).params.source, "plugin:project-filter");
+    assert.equal(seen.at(-1).params.source, "plugin:bshearrer.project-filter");
   } finally {
     server.close();
   }
